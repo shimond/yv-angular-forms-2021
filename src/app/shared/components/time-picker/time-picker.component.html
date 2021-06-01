@@ -1,0 +1,13 @@
+<div [formGroup]="timeGroup">
+  <select formControlName="hour">
+    <option *ngFor="let hour of hours">{{hour}}</option>
+  </select>
+  <span>:</span>
+  <select formControlName="minutes">
+    <option *ngFor="let minute of minutes">{{minute}}</option>
+  </select>
+
+  <div>
+    {{timeGroup.controls.minutes.errors | json}}
+  </div>
+</div>

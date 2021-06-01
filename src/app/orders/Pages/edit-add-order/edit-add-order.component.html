@@ -1,0 +1,54 @@
+<div class="grid-it">
+  <div>
+    <form [formGroup]="orderFormGroup">
+
+      <div>
+        <input readonly formControlName="comment" placeholder="comment">
+      </div>
+      <div>
+        <textarea formControlName="comment2" placeholder="comment2"></textarea>
+      </div>
+      <h3>Address</h3>
+
+      <app-edit-address groupName="shippingAddress"></app-edit-address>
+
+      <mat-selection-list formControlName="hobbies">
+        <mat-list-option *ngFor="let h of hobbies$ | async" [value]="h">
+          {{h}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <div>
+        <button (click)="addOrderItem()">+ item</button>
+        <ng-container>
+          <div *ngFor="let group of orderItemGroups; let index=index" [formGroup]="group">
+            <button (click)="removeItem(index)">- item</button>
+            <div>
+              <div>
+                <select formControlName="productId">
+                  <option [value]="1">Bamba</option>
+                  <option [value]="2">Bisli</option>
+                  <option [value]="3">Kefli</option>
+                  <option [value]="4">Corn</option>
+                </select>
+              </div>
+              <div>
+                <input type="number" formControlName="amount">
+              </div>
+            </div>
+            <hr>
+          </div>
+        </ng-container>
+      </div>
+      <div>
+        <app-time-picker formControlName="orderDate"></app-time-picker>
+      </div>
+      <div>
+        <button [disabled]="orderFormGroup.invalid">Save</button>
+      </div>
+    </form>
+  </div>
+  <div class="padit">
+    <pre>{{orderFormGroup.getRawValue() | json}}</pre>
+  </div>
+</div>

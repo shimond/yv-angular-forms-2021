@@ -1,0 +1,15 @@
+<ng-container [formGroup]="form">
+  <div>
+    <select formControlName="country">
+      <option *ngFor="let county of countries$ | async" [value]="county">{{county}}</option>
+    </select>
+  </div>
+
+  <div>
+    <select formControlName="city">
+      <option *ngFor="let city of cities$ | async" [value]="city">{{city}}</option>
+    </select>
+  </div>
+
+
+</ng-container>
